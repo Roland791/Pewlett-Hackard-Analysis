@@ -72,3 +72,22 @@ AND (birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 Order by emp_no;
 
 Select * from mentorship_availability
+
+---Deliverable 3
+-- Query 1 - Export Employee count by department number
+SELECT COUNT(ce.emp_no), de.dept_no, 
+INTO retire_by_dept
+FROM current_emp as ce
+LEFT JOIN dept_emp as de
+ON ce.emp_no = de.emp_no
+GROUP BY de.dept_no
+
+Select * from retire_by_dept
+
+--Query 2 - List of potential mentee employees by title and the number of years they have been in their positions
+
+Select Date_PART('year','8/1/2021'::date) - Date_Part('year',m.from_date), m.title, m.emp_no
+Into potential_internal_promotes
+From mentorship_availability as m
+
+Select * from potential_internal_promotes
